@@ -1,2 +1,2 @@
-# robot-emocional-lab-vr
+# Robot Emocional
 Repositorio creado para controlar el flujo de trabajo de la implementación de un reconocimiento emocional a partir de la detección facial.
