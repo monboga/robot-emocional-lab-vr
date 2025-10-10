@@ -33,7 +33,7 @@ ROBOT-EMOCIONAL-LAB-VR/
 ├── modelo_emociones_final.keras # Modelo entrenado y listo para usar
 ├── fer2013.csv               # Dataset (debe descargarse por separado)
 ├── entrenar_modelo_final.py  # Script para entrenar el modelo (optimizado para Colab)
-├── reconocimiento_en_vivo.py # Script principal para ejecutar la aplicación
+├── reconocimiento_con_api_local.py # Script principal para ejecutar la aplicación
 └── README.md                 # La documentación del proyecto
 ```
 
@@ -43,7 +43,7 @@ Sigue estos pasos para poner en marcha el proyecto en tu máquina local.
 
 **1. Clona el Repositorio**
 ```bash
-git clone [git@github.com:monboga/robot-emocional-lab-vr.git](git@github.com:monboga/robot-emocional-lab-vr.git)
+git clone git@github.com:monboga/robot-emocional-lab-vr.git
 cd ROBOT-EMOCIONAL-LAB-VR
 ```
 
@@ -79,7 +79,7 @@ pip install -r requirements.txt
 
 Para ejecutar la aplicación principal, simplemente corre el siguiente comando en tu terminal (con el entorno virtual activado):
 ```bash
-python reconocimiento_en_vivo.py
+python reconocimiento_con_api_local.py
 ```
 Presiona la tecla **'q'** para cerrar la aplicación.
 
