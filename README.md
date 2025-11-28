@@ -8,11 +8,6 @@ El modelo de IA ha sido entrenado desde cero utilizando el dataset FER-2013 y ap
 
 * **Detección de Rostros en Tiempo Real:** Utiliza OpenCV para localizar rostros en el feed de la cámara.
 * **Clasificación de 7 Emociones:** Implementa un modelo de Keras/TensorFlow para identificar la expresión facial.
-* **Modelo Optimizado:** Entrenado con técnicas avanzadas para mejorar la precisión:
-    * **Aumento de Datos (Data Augmentation):** Para crear más ejemplos de entrenamiento.
-    * **Ponderación de Clases (Class Weights):** Para combatir el desbalance del dataset.
-    * **Normalización por Lotes (Batch Normalization):** Para un entrenamiento más rápido y estable.
-    * **Tasa de Aprendizaje Adaptativa:** Para un ajuste fino del modelo.
 * **Interfaz Visual Simple:** Muestra el resultado directamente en la ventana de video.
 
 ## 🛠️ Tecnologías Utilizadas
@@ -27,11 +22,10 @@ El modelo de IA ha sido entrenado desde cero utilizando el dataset FER-2013 y ap
 ## 📁 Estructura del Proyecto
 
 ```
-ROBOT-EMOCIONAL-LAB-VR/
+robot-emocional-lab-vr/
 ├── venv/                     # Entorno virtual de Python
 ├── .gitignore                # Archivos ignorados por Git
 ├── modelo_emociones_final.keras # Modelo entrenado y listo para usar
-├── fer2013.csv               # Dataset (debe descargarse por separado)
 ├── entrenar_modelo_final.py  # Script para entrenar el modelo (optimizado para Colab)
 ├── reconocimiento_con_api_local.py # Script principal para ejecutar la aplicación
 └── README.md                 # La documentación del proyecto
@@ -43,8 +37,7 @@ Sigue estos pasos para poner en marcha el proyecto en tu máquina local.
 
 **1. Clona el Repositorio**
 ```bash
-git clone git@github.com:monboga/robot-emocional-lab-vr.git
-cd ROBOT-EMOCIONAL-LAB-VR
+git clone https://github.com/monboga/robot-emocional-lab-vr.git
 ```
 
 **2. Crea y Activa el Entorno Virtual**
@@ -71,7 +64,7 @@ pip install -r requirements.txt
 
 **4. Descarga los Archivos Necesarios**
 * **Dataset:** Descarga el archivo `fer2013.csv` desde [este enlace de Kaggle](https://www.kaggle.com/datasets/msambare/fer2013) y colócalo en la raíz del proyecto.
-* **Modelo Pre-entrenado:** Asegúrate de tener el archivo `modelo_emociones_final.keras` en la raíz del proyecto.
+* **Modelo Pre-entrenado:** Asegúrate de tener el archivo `modelo_emociones_final.keras` en la raíz del proyecto que se encuentra en el siguiente drive: [Drive de Descarga](https://drive.google.com/drive/folders/1dvm5o8bP28coVf3IU2nVYKm89ZIn70l5?usp=sharing).
 
 ## 🚀 Uso del Proyecto
 
@@ -91,17 +84,8 @@ El entrenamiento es un proceso que consume muchos recursos. Se recomienda encare
 3.  Activa el acelerador por hardware (GPU).
 4.  Ejecuta el cuaderno para entrenar y guardar un nuevo archivo `.keras`.
 
-## 🧠 Proceso de Entrenamiento del Modelo
+## 🔮 Posibles Mejoras
+* Remover la GUI (Interfaz Gráfica de Usuario) del robot emocional, para solamente ver y manejar los estados de la aplicación a través de logs del sistema por consola.
+* Ver la posibilidad de generar un script ya sea en python o en bash para que la aplicación pueda iniciar nada más al encender el raspberry pi. 
 
-El modelo es una **Red Neuronal** diseñada para la clasificación de imágenes. Para lograr una mayor precisión en emociones poco representadas en el dataset (como "miedo" o "enojo"), se implementaron las siguientes estrategias durante el entrenamiento:
 
-* **Ponderación de Clases:** Se asignó un "peso" mayor a las clases con menos imágenes para que el modelo les prestara más atención durante el aprendizaje.
-* **Aumento de Datos:** Se generaron imágenes sintéticas con variaciones (rotación, zoom, etc.) para aumentar la diversidad del dataset.
-* **Batch Normalization:** Se incluyeron capas de normalización para acelerar la convergencia y estabilizar el entrenamiento.
-* **ReduceLROnPlateau:** Se utilizó un callback para ajustar dinámicamente la tasa de aprendizaje, permitiendo un ajuste más fino en las etapas finales.
-
-## 🔮 Mejoras Futuras
-
-* **Usar un detector de rostros más moderno** como MediaPipe para mayor velocidad y precisión.
-* **Entrenar con un dataset de mayor calidad** como AffectNet o CK+ para mejorar aún más el reconocimiento de emociones sutiles.
-* **Optimizar la inferencia con ONNX Runtime** para reducir el consumo de CPU (una vez que las dependencias de `tf2onnx` se estabilicen con las versiones más recientes de TensorFlow).
