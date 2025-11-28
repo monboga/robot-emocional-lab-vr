@@ -51,14 +51,14 @@ def limpiar_respuesta_ia(texto_crudo):
 
 # --- El resto del código (reproducir_respuesta, manejar_interaccion_ia, bucle principal) no necesita cambios ---
 def reproducir_respuesta(texto):
-    # ... (código sin cambios) ...
     try:
         print("Generando audio en segundo plano...")
+        from gtts import gTTS
         tts = gTTS(text=texto, lang='es', slow=False)
         nombre_archivo = "respuesta_ia.mp3"
         tts.save(nombre_archivo)
         print("Reproduciendo respuesta...")
-        playsound(nombre_archivo)
+        os.system(f"mpg123 -q {nombre_archivo}")  # ✅ Reproduce sin usar 'playsound'
         os.remove(nombre_archivo)
         print("Audio reproducido y archivo temporal eliminado.")
     except Exception as e:
@@ -106,7 +106,10 @@ while True:
         hilo_ia.daemon = True
         hilo_ia.start()
     key = cv2.waitKey(1) & 0xFF
-    if key == ord('q') or cv2.getWindowProperty(WINDOW_NAME, cv2.WND_PROP_VISIBLE) < 1:
+    try:
+        if key == ord('q') or cv2.getWindowProperty(WINDOW_NAME, cv2.WND_PROP_VISIBLE) < 1:
+            break
+    except cv2.error:
         break
 cap.release()
 cv2.destroyAllWindows()
